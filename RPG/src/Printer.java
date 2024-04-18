@@ -24,6 +24,8 @@ public class Printer {
 				char[] array = message.toCharArray();
 				int q = 25;
 				int newLine = 0;
+
+				Scanner scanner = new Scanner(System.in);
 				for(int i = 0; i < array.length; i++)
 				{
 					q = 25;
@@ -36,6 +38,14 @@ public class Printer {
 						q = dict.get(l);
 						
 						
+					}
+					if (System.in.available() > 0 && System.in.read() == '\n')
+					{
+						for(int j = i + 1; j < array.length; j++)
+						{
+							System.out.print(array[j]);
+						}
+						break;
 					}
 					Thread.sleep(q);
 					newLine++;

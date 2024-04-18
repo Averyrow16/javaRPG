@@ -69,7 +69,7 @@ magic = 8;
 break;
 
 }
-String message = "YOU ARE " + Class + " " + name + ", IRS agent.";
+String message = "YOU ARE " + name + ", agent of the National Revenue Service.";
 String message2 = "SILVER TONGUE (strength): " + strength;
 String message3 = "HEALTH: " + health;
 String message4 = "NEURON FIRING SPEED (dexterity): " + dexterity;
@@ -107,11 +107,11 @@ public int Threat()
 
 {
 
-//returns from 0 to 10 hitpoints
+//returns from 0 to 6 hitpoints
 
 Roll_fear(5);
 
-return rand.nextInt(11);
+return rand.nextInt(6);
 
 }
 

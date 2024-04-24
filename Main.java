@@ -81,25 +81,27 @@ public class Main {
                 Printer.betterPrint("Invalid choice");
         }
     }
-	static public void playerAttack(int attackChoice)
-	{
-		battleManager.displayEnemies();
-		Enemy enemyToAttack = battleManager.selectEnemy(scanner);
-		battleManager.playerPerformAttack(player, enemyToAttack, attackChoice);
-	}
 
     static public void PlayerMenu() {
-        System.out.println("1. Attack");
-        System.out.println("2. Use Item");
-        System.out.print("Choose your action: ");
+        
+       
+        boolean choices = false;
+while(!choices)
+{
+	if(player.getHealth() > 0)
+	{
+	System.out.println("1. Attack");
+    System.out.println("2. Use Item");
+    System.out.print("Choose your action: ");
 
-        int choice = scanner.nextInt();
-
+	 int choice = scanner.nextInt();
         switch (choice) {
             case 1:
-            	
+            	choices = true;
                 int attackChoice = 0;
                 while (true) {
+                	battleManager.displayEnemies();
+            		Enemy enemyToAttack = battleManager.selectEnemy(scanner);
                     System.out.println("Attacks:");
                     PlayerMenuAttackOptions();
                     System.out.print("Choose your attack: ");
@@ -111,11 +113,12 @@ public class Main {
                         AttackQuery();
                         continue;
                     }
-                    playerAttack(attackChoice);
+                    battleManager.playerPerformAttack(player, enemyToAttack, attackChoice);
                     break;
                     }
                     else {
                     	System.out.println("BAD CHOICE!");
+                    	continue;
                     	}
 					
                 }
@@ -126,18 +129,26 @@ public class Main {
                     itemManager.displayItems();
                     if(itemManager.checkItems() != 0)
                     {
+                    	choices = true;
                     	Item itemToUse = itemManager.selectItem(scanner);
                     	System.out.println("you picked " + itemToUse.getName());
                     	itemToUse.useItem(itemToUse.getName());
                     	itemManager.removeItem(itemToUse);
+                    	break;
                     }
                     else
                     {
                     	break;
                     }
                 }
+                break;
 		default:
-                System.out.println("Invalid choice");
+                System.out.println("Invalid choice :(");
+                continue;
         }
+        
+	}
+}
+
     }
 }
